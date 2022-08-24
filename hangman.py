@@ -1,10 +1,17 @@
+import requests
+from random_word import RandomWords
+
+r=RandomWords()
+
 print("Hangman Game")
 
-target_word="rhythm"
+target_word=r.get_random_word(minLength=4, maxLength=10, hasDictionaryDef="true")
 target_arr=[]
 for letter in target_word:
     target_arr.append(letter)
 guessed_arr=["_"]*len(target_word)
+
+
 lives=10
 
 def guess(letter, target_array, guessed_array):
@@ -36,3 +43,5 @@ while lives>0:
         print("YOU WIN!")
         break
 
+if lives==0:
+    print(f"The word was {target_word}")
