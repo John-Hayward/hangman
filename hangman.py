@@ -12,6 +12,27 @@ def guess(letter, target_array, guessed_array):
         if target_array[i]==letter:
             guessed_array[i]=letter
 
-print(" ".join(guessed_arr))
-guess("r",target_arr,guessed_arr)
-print(" ".join(guessed_arr))
+    return letter in guessed_arr
+
+print(" ".join(guessed_arr) + "\n")
+print(f"Starting lives: {lives} \n")
+
+while lives>0:
+    current_guess=input("Guess a letter ").strip().lower()
+
+    if len(current_guess)!=1:
+        print("Invalid guess, please enter one character")
+        pass
+
+    guess(current_guess,target_arr,guessed_arr)
+
+    if not guess(current_guess,target_arr,guessed_arr):
+        lives -=1 
+
+    print(" ".join(guessed_arr) + "\n")
+    print(f"Remaining lives: {lives} \n")
+
+    if guessed_arr==target_arr:
+        print("YOU WIN!")
+        break
+
